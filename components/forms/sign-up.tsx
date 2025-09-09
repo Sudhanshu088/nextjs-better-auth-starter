@@ -6,6 +6,8 @@ import { useFormik } from 'formik'
 import { Loader2 } from 'lucide-react'
 import { toast } from "sonner"
 
+import { SignOnButton } from '@/components/buttons/sign-on'
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -44,14 +46,14 @@ const SignUpForm = ({ onSuccess }: Props) => {
                     image: "",
                     callbackURL: "/"
                 }, {
-                    
+
                     onSuccess: (ctx) => {
                         onSuccess()
                         toast.success("Account created successfully")
                     },
-                    
+
                     onError: (ctx) => { toast.error(ctx.error.message) }
-                
+
                 });
 
             } catch (error) { console.error("error") }
@@ -64,6 +66,17 @@ const SignUpForm = ({ onSuccess }: Props) => {
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+
+            <div className='grid grid-cols-2 gap-2'>
+                <SignOnButton provider="GitHub" />
+                <SignOnButton provider="Google" />
+            </div>
+
+            <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
+                <span className="bg-card text-muted-foreground relative z-10 px-2">
+                    Or continue with
+                </span>
+            </div>
 
             <div className="flex flex-col gap-2">
                 <Label htmlFor="username" className="ml-2">Username</Label>
