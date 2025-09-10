@@ -2,7 +2,12 @@
 
 import React, { useMemo, useState } from "react"
 
-import { CheckIcon, EyeIcon, EyeOffIcon, XIcon } from "lucide-react"
+import {
+    CheckIcon,
+    EyeIcon,
+    EyeOffIcon,
+    XIcon
+} from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 

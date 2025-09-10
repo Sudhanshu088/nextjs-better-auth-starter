@@ -2,7 +2,12 @@
 
 import React, { useState } from 'react'
 
-import { InfoIcon, Loader2 } from 'lucide-react'
+import {
+    EyeIcon,
+    EyeOffIcon,
+    InfoIcon,
+    Loader2
+} from 'lucide-react'
 import { toast } from 'sonner'
 
 import { PasswordWithStrengthIndicatorInput } from '@/components/inputs/input'
@@ -25,6 +30,8 @@ const ResetPasswordForm = ({
     const [confirmPassword, setConfirmPassword] = useState("")
 
     const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const [isVisible, setIsVisible] = useState<boolean>(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
 
@@ -62,32 +69,57 @@ const ResetPasswordForm = ({
 
     }
 
+    const toggleVisibility = () => setIsVisible((prevState) => !prevState)
+
     return (
         <form className="space-y-4" onSubmit={handleSubmit}>
 
             <div className="flex flex-col gap-2">
+
                 <Label htmlFor="new-password" className="pl-2">
                     New Password
                 </Label>
+
                 <PasswordWithStrengthIndicatorInput
                     password={newPassword}
                     onPasswordChange={setNewPassword}
                 />
+                
             </div>
 
             <div className="flex flex-col gap-2">
+
                 <Label htmlFor="confirm-password" className="pl-2">
                     Confirm Password
                 </Label>
-                <Input
-                    id="confirm-password"
-                    name="confirm-password"
-                    type="password"
-                    placeholder="Confirm your new password"
-                    required
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+
+                <div className="relative">
+                    <Input
+                        id="confirm-password"
+                        name="confirm-password"
+                        type={isVisible ? "text" : "password"}
+                        placeholder="Confirm your new password"
+                        required
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="pe-9"
+                    />
+                    <button
+                        className="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="button"
+                        onClick={toggleVisibility}
+                        aria-label={isVisible ? "Hide password" : "Show password"}
+                        aria-pressed={isVisible}
+                        aria-controls="password"
+                    >
+                        {isVisible ? (
+                            <EyeOffIcon size={16} aria-hidden="true" />
+                        ) : (
+                            <EyeIcon size={16} aria-hidden="true" />
+                        )}
+                    </button>
+                </div>
+
             </div>
 
             <div className="rounded-md border border-blue-500/50 px-4 py-3 text-blue-600">

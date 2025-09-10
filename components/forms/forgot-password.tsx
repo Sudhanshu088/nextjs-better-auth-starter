@@ -61,7 +61,9 @@ const ForgotPasswordForm = ({ onSuccess }: Props) => {
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
 
             <div className="flex flex-col gap-2">
+
                 <Label htmlFor="email" className="ml-2">Email</Label>
+
                 <Input
                     id="email"
                     name="email"
@@ -72,9 +74,11 @@ const ForgotPasswordForm = ({ onSuccess }: Props) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
+
                 {formik.touched.email && formik.errors.email && (
                     <div className="text-red-500 px-2">{formik.errors.email}</div>
                 )}
+
             </div>
 
             <Button
