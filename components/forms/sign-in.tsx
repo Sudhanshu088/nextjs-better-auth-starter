@@ -6,8 +6,9 @@ import { useFormik } from 'formik'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 
-import { SignUpButton } from "@/components/buttons/sign-up"
+import { ForgotPasswordButton } from '@/components/buttons/forgot-password'
 import { SignOnButton } from "@/components/buttons/sign-on"
+import { SignUpButton } from "@/components/buttons/sign-up"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -94,12 +95,13 @@ const SignInForm = ({ redirect_url }: Props) => {
                     <div className="grid gap-3">
                         <div className="flex items-center">
                             <Label htmlFor="password">Password</Label>
-                            <a
+                            {/* <a
                                 href="#"
                                 className="ml-auto text-sm underline-offset-4 hover:underline"
                             >
                                 Forgot your password?
-                            </a>
+                            </a> */}
+                            <ForgotPasswordButton />
                         </div>
                         <Input
                             id="password"
