@@ -1,6 +1,8 @@
 import React from 'react'
 import type { Metadata } from "next";
 
+import { Toaster } from '@/components/ui/sonner';
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,9 +16,10 @@ const RootLayout = ({
     children: React.ReactNode;
 }>) => {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body>
                 <main>{children}</main>
+                <Toaster/>
             </body>
         </html>
     )
